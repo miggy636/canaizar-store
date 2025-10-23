@@ -1,74 +1,141 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Canaizar Store</title>
-  <style>
-    body { font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #ffffff; color: #000; }
-    header { background-color: #007bff; color: white; padding: 15px; display: flex; align-items: center; justify-content: space-between; }
-    header img.logo { height: 60px; }
-    nav a { color: white; margin: 0 15px; text-decoration: none; font-weight: bold; }
-    nav a:hover { text-decoration: underline; }
-    .hero { text-align: center; padding: 50px; background: linear-gradient(to right, #007bff, #00aaff); color: white; }
-    .hero h1 { font-size: 2.5em; }
-    .section { padding: 30px; }
-    .clothes-grid { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; }
-    .clothes-item { width: 220px; border: 1px solid #ccc; border-radius: 10px; padding: 10px; text-align: center; background-color: #f8f8f8; }
-    footer { background-color: #007bff; color: white; text-align: center; padding: 20px; margin-top: 30px; }
-  </style>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Canaizar Stores — Let us dress you</title>
+<link rel="stylesheet" href="style.css">
 </head>
-<body>
-  <header>
-    <div style="display:flex;align-items:center;">
-      <img src="logo.png" alt="Canaizar Store Logo" class="logo">
-      <h2 style="margin-left:10px;">Canaizar Store</h2>
+<body data-theme="white-blue">
+  <header class="site-header container">
+    <div class="brand">
+      <div class="logo-placeholder" id="logo">LOGO</div>
+      <div>
+        <h1 class="site-title">Canaizar Stores</h1>
+        <p class="slogan">Let us dress you.</p>
+      </div>
     </div>
-    <nav>
-      <a href="#home">Home</a>
-      <a href="#clothes">Clothes</a>
-      <a href="#stories">Stories</a>
-      <a href="#contact">Contact</a>
-      <a href="#admin">Admin</a>
-    </nav>
+    <div class="nav-right">
+      <nav class="main-nav">
+        <a href="#products">Shop</a>
+        <a href="#about">About</a>
+        <a href="#stories">Stories</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
   </header>
 
-  <section class="hero" id="home">
-    <h1>Let us style you</h1>
-    <p>Explore luxury women's fashion in all colors and themes.</p>
-  </section>
+  <main class="container">
+    <section class="hero">
+      <div class="hero-text">
+        <h2>Luxury women's wear — made to feel as special as you are</h2>
+        <p class="muted">Canaizar Stores curates limited-run, handcrafted pieces with premium fabrics and timeless designs.</p>
+        <div class="cta">
+          <a href="#products" class="btn-primary">Shop Collection</a>
+        </div>
+      </div>
+      <div class="hero-image placeholder-image">IMAGE</div>
+    </section>
 
-  <section id="clothes" class="section">
-    <h2>Our Collection</h2>
-    <div class="clothes-grid">
-      <!-- Add your clothing items here -->
-    </div>
-  </section>
+    <section id="about" class="about">
+      <h3>About Canaizar Stores</h3>
+      <p class="muted">Canaizar Stores is a Nairobi-based boutique offering refined, contemporary luxury for women. We focus on impeccable tailoring, premium materials, and exceptional customer service — including bespoke fittings and thoughtful finishes. Discover pieces crafted to celebrate the confident, modern woman.</p>
+    </section>
 
-  <section id="stories" class="section">
-    <h2>Shop Stories</h2>
-    <!-- Add your stories here -->
-  </section>
+    <section id="products" class="products">
+      <div class="section-header">
+        <h3>Products</h3>
+        <div class="muted">Add as many items as you like — the grid expands automatically.</div>
+      </div>
+      <div id="productGrid" class="product-grid">
+        <!-- Empty product slots. To add more, duplicate a .product-card element -->
+        <!-- Example empty slot template (visible placeholders) -->
+        <template id="product-template">
+          <article class="product-card">
+            <div class="product-media placeholder-image">Product Image</div>
+            <div class="product-body">
+              <h4 class="product-name">Product name</h4>
+              <div class="product-price">KSh 0</div>
+              <p class="muted product-desc">Short description (replace later).</p>
+              <div class="product-actions">
+                <button class="btn-outline" onclick="quickView(this)">Quick View</button>
+                <button class="btn-primary" onclick="addToCart(this)">Add</button>
+              </div>
+            </div>
+          </article>
+        </template>
 
-  <section id="contact" class="section">
-    <h2>Contact Us</h2>
-    <p><strong>Location:</strong> Imenti House, Zodiac Stalls Z14</p>
-    <p><strong>Phone:</strong> 0705526360</p>
-    <p><strong>Email:</strong> milliecanaiza@gmail.com</p>
-  </section>
+        <!-- Start with a few empty visible slots so layout is obvious -->
+        <script>
+          // Insert 8 empty slots on load to show the unlimited layout
+          document.addEventListener('DOMContentLoaded', function(){
+            const tpl = document.getElementById('product-template').content;
+            const grid = document.getElementById('productGrid');
+            for(let i=0;i<8;i++){
+              const clone = document.importNode(tpl, true);
+              grid.appendChild(clone);
+            }
+          });
+        </script>
+      </div>
 
-  <section id="admin" class="section">
-    <h2>Admin Panel</h2>
-    <p>Site created and managed by <strong>Miguel</strong>.</p>
-  </section>
+      <div class="admin-tools muted">
+        <small>Admin: Miguel — use the template above to copy/paste new product items or upload images to the <code>/images/</code> folder.</small>
+      </div>
+    </section>
 
-  <section id="delivery" class="section">
-    <h2>Delivery & Payments</h2>
-    <p>We offer Cash, Debit, Payment on Delivery, and Till 4145654 payment methods.</p>
-  </section>
+    <section id="stories" class="stories">
+      <h3>Shop Stories</h3>
+      <div class="muted">This area is reserved for your updates. Add story cards here when ready.</div>
+      <div id="storiesGrid" class="stories-grid">
+        <!-- Empty by design; add story cards later -->
+      </div>
+    </section>
 
-  <footer>
-    <p>&copy; 2025 Canaizar Store | All Rights Reserved</p>
+    <section class="payment-delivery">
+      <h3>Payment & Delivery</h3>
+      <ul>
+        <li>Cash</li>
+        <li>Debit</li>
+        <li>Payment on Delivery</li>
+      </ul>
+    </section>
+
+    <section id="contact" class="contact">
+      <h3>Contact Us</h3>
+      <div class="contact-grid">
+        <form action="https://formsubmit.co/milliecanaiza@gmail.com" method="POST" onsubmit="submitted(event)">
+          <!-- FormSubmit requires a hidden input to disable captcha if desired; leaving default -->
+          <input type="hidden" name="_subject" value="New message from Canaizar Stores website">
+          <input type="text" name="name" placeholder="Your name" required>
+          <input type="email" name="email" placeholder="Your email" required>
+          <textarea name="message" rows="5" placeholder="Your message" required></textarea>
+          <button class="btn-primary" type="submit">Send Message</button>
+        </form>
+        <div class="contact-info muted">
+          <p><strong>Phone:</strong> 0705526360</p>
+          <p><strong>Address:</strong> Imenti House, Zodiac Stalls Z14</p>
+          <p><strong>Email:</strong> milliecanaiza@gmail.com</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer container">
+    <div>© <span id="year"></span> Canaizar Stores</div>
+    <div class="muted">Created and Managed by Miguel — Admin of Canaizar Stores</div>
   </footer>
+
+<script>
+  // Basic JS handlers for mock interactions
+  document.getElementById('year').textContent = new Date().getFullYear();
+  function quickView(btn){
+    alert('Quick view (mock). Replace with product details as needed.');
+  }
+  function addToCart(btn){
+    alert('Added to cart (mock).');
+  }
+  function submitted(e){ setTimeout(()=>alert('Message sent (mock). Check your email or FormSubmit).'), 10); }
+</script>
 </body>
 </html>
