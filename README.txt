@@ -1,11 +1,17 @@
+Canaizar Store (CNL Final)
+Files included:
+- index.html
+- style.css
+- script.js
+- admin.html (password: canaiza205)
+- logo.png
 
-Canaizar Stores — Website
-Files:
-- index.html    (main page)
-- style.css     (styles)
-- /images/      (place your logo and product images here; update img src paths in index.html)
+How to publish:
+1. Unzip and upload files to your GitHub repo root.
+2. Settings -> Pages -> Source: main branch, folder: / (root).
+3. Site appears at: https://<username>.github.io/<repo>/
 
-Notes:
-- Contact form uses FormSubmit to send messages to milliecanaiza@gmail.com.
-- To add products, duplicate the product-card template (or edit the HTML) and place product images in the images/ folder.
-- Footer credits: Created and Managed by Miguel — Admin of Canaizar Stores
+Admin usage:
+- Open admin.html and enter password canaiza205. Add products/stories; data saved to localStorage.
+- Use Export/Import to backup/restore catalog.
+- Contact email in footer: canaizamillie5@gmail.com

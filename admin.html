@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Admin - Canaizar Store</title><link rel="stylesheet" href="style.css"></head>
+<body>
+<div id="passwordGate" class="password-screen" style="position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.8);z-index:1000;">
+  <div style="background:white;padding:24px;border-radius:8px;text-align:center;color:#333;">
+    <h2>Admin Access</h2>
+    <p>Enter password to continue</p>
+    <input id="pw" type="password" placeholder="Password" style="padding:8px;margin-top:8px;width:100%;"><br>
+    <button id="enter" style="margin-top:10px;padding:10px 16px;background:#1e5fb4;color:white;border:none;border-radius:6px;">Enter</button>
+    <p id="err" style="color:red;display:none">Incorrect password</p>
+  </div>
+</div>
+
+<main class="container">
+  <h1>Admin Dashboard</h1>
+  <div class="admin-panel" id="panel" style="display:none;background:white;padding:16px;border-radius:8px;box-shadow:0 8px 30px rgba(0,0,0,0.08)}">
+    <h3>Welcome, Millicent</h3>
+    <section>
+      <h4>Add Product</h4>
+      <input id="pImg" type="file" accept="image/*"><br>
+      <input id="pName" placeholder="Product name"><br>
+      <input id="pPrice" placeholder="Price (e.g. 10500)"><br>
+      <textarea id="pDesc" placeholder="Short description"></textarea><br>
+      <button id="addP" style="padding:10px 14px;background:#1e5fb4;color:white;border:none;border-radius:6px;">Add Product</button>
+    </section>
+    <hr>
+    <section>
+      <h4>Add Story</h4>
+      <input id="sImg" type="file" accept="image/*"><br>
+      <input id="sTitle" placeholder="Story title"><br>
+      <textarea id="sText" placeholder="Story text"></textarea><br>
+      <button id="addS" style="padding:10px 14px;background:#1e5fb4;color:white;border:none;border-radius:6px;">Add Story</button>
+    </section>
+    <hr>
+    <section>
+      <h4>Manage</h4>
+      <button id="export" style="padding:10px 12px;border-radius:6px;">Export JSON</button>
+      <input id="importFile" type="file" accept=".json"><br>
+      <button id="logout" style="padding:10px 12px;border-radius:6px;margin-top:8px;">Logout</button>
+    </section>
+  </div>
+</main>
+
+<script>
+const ADMIN_PASS = "canaiza205";
+const LS_PRODUCTS = "cnl_products_v1";
+const LS_STORIES = "cnl_stories_v1";
+document.getElementById('enter').addEventListener('click', ()=>{const v=document.getElementById('pw').value; if(v===ADMIN_PASS){ localStorage.setItem('cnl_admin','true'); openPanel(); } else { document.getElementById('err').style.display='block'; }});
+function openPanel(){ document.getElementById('passwordGate').style.display='none'; document.getElementById('panel').style.display='block'; }
+if(localStorage.getItem('cnl_admin')==='true') openPanel();
+function readFileAsDataURL(file, cb){ const r=new FileReader(); r.onload=()=>cb(r.result); r.readAsDataURL(file); }
+document.getElementById('addP').addEventListener('click', ()=>{ const f=document.getElementById('pImg').files[0]; const name=document.getElementById('pName').value||'Product'; const price=document.getElementById('pPrice').value||'KSh 0'; const desc=document.getElementById('pDesc').value||''; if(!f){ alert('Choose image'); return; } readFileAsDataURL(f,(data)=>{ const products=JSON.parse(localStorage.getItem(LS_PRODUCTS)||'[]'); products.unshift({image:data,name,price,desc}); localStorage.setItem(LS_PRODUCTS, JSON.stringify(products)); alert('Product added'); document.getElementById('pImg').value=''; document.getElementById('pName').value=''; document.getElementById('pPrice').value=''; document.getElementById('pDesc').value=''; }); });
+document.getElementById('addS').addEventListener('click', ()=>{ const f=document.getElementById('sImg').files[0]; const title=document.getElementById('sTitle').value||'Story'; const text=document.getElementById('sText').value||''; if(f){ readFileAsDataURL(f,(data)=>{ const stories=JSON.parse(localStorage.getItem(LS_STORIES)||'[]'); stories.unshift({image:data,title,text}); localStorage.setItem(LS_STORIES, JSON.stringify(stories)); alert('Story added'); document.getElementById('sImg').value=''; document.getElementById('sTitle').value=''; document.getElementById('sText').value=''; }); } else { const stories=JSON.parse(localStorage.getItem(LS_STORIES)||'[]'); stories.unshift({image:'',title,text}); localStorage.setItem(LS_STORIES, JSON.stringify(stories)); alert('Story added'); document.getElementById('sTitle').value=''; document.getElementById('sText').value=''; } });
+document.getElementById('export').addEventListener('click', ()=>{ const data={products: JSON.parse(localStorage.getItem(LS_PRODUCTS)||'[]'), stories: JSON.parse(localStorage.getItem(LS_STORIES)||'[]')}; const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'}); const url=URL.createObjectURL(blob); const a=document.createElement('a'); a.href=url; a.download='cnl_data.json'; a.click(); });
+document.getElementById('importFile').addEventListener('change',(e)=>{ const f=e.target.files[0]; if(!f) return; const r=new FileReader(); r.onload=()=>{ try{ const data=JSON.parse(r.result); if(data.products) localStorage.setItem(LS_PRODUCTS, JSON.stringify(data.products)); if(data.stories) localStorage.setItem(LS_STORIES, JSON.stringify(data.stories)); alert('Import done'); }catch(e){ alert('Invalid JSON'); } }; r.readAsText(f); });
+document.getElementById('logout').addEventListener('click', ()=>{ localStorage.removeItem('cnl_admin'); alert('Logged out'); location.reload(); });
+</script>
+</body>
+</html>
