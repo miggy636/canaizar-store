@@ -1,74 +1,331 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Canaizar Store</title>
-  <style>
-    body { font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #ffffff; color: #000; }
-    header { background-color: #007bff; color: white; padding: 15px; display: flex; align-items: center; justify-content: space-between; }
-    header img.logo { height: 60px; }
-    nav a { color: white; margin: 0 15px; text-decoration: none; font-weight: bold; }
-    nav a:hover { text-decoration: underline; }
-    .hero { text-align: center; padding: 50px; background: linear-gradient(to right, #007bff, #00aaff); color: white; }
-    .hero h1 { font-size: 2.5em; }
-    .section { padding: 30px; }
-    .clothes-grid { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; }
-    .clothes-item { width: 220px; border: 1px solid #ccc; border-radius: 10px; padding: 10px; text-align: center; background-color: #f8f8f8; }
-    footer { background-color: #007bff; color: white; text-align: center; padding: 20px; margin-top: 30px; }
-  </style>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Canaizar Store — Let us style you</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>
-    <div style="display:flex;align-items:center;">
-      <img src="logo.png" alt="Canaizar Store Logo" class="logo">
-      <h2 style="margin-left:10px;">Canaizar Store</h2>
+  <div id="loader" class="loader">
+    <img src="logo.png" alt="logo" class="loader-logo">
+  </div>
+
+  <header class="site-header container">
+    <div class="brand centered">
+      <img src="logo.png" alt="Canaizar Store Logo" class="site-logo">
+      <div class="title-block">
+        <h1 class="site-title">Canaizar Store</h1>
+        <p class="slogan">Let us style you</p>
+      </div>
     </div>
-    <nav>
-      <a href="#home">Home</a>
-      <a href="#clothes">Clothes</a>
-      <a href="#stories">Stories</a>
-      <a href="#contact">Contact</a>
-      <a href="#admin">Admin</a>
-    </nav>
+    <button id="adminBtn" class="admin-btn">Admin</button>
   </header>
 
-  <section class="hero" id="home">
-    <h1>Let us style you</h1>
-    <p>Explore luxury women's fashion in all colors and themes.</p>
-  </section>
+  <main class="container">
+    <section class="hero fade-section">
+      <h2>Luxury women's wear — made to feel as special as you are</h2>
+      <p class="muted">Canaizar Store curates limited-run pieces, premium fabrics and timeless designs.</p>
+      <a href="#products" class="btn-primary">Shop Collection</a>
+    </section>
 
-  <section id="clothes" class="section">
-    <h2>Our Collection</h2>
-    <div class="clothes-grid">
-      <!-- Add your clothing items here -->
+    <section id="about" class="about fade-section">
+      <h3>About Canaizar Store</h3>
+      <p class="muted">Canaizar Store is a Nairobi-based boutique offering refined, contemporary luxury for women. We focus on impeccable tailoring, premium materials and exceptional customer service, including bespoke fittings.</p>
+    </section>
+
+    <section id="products" class="products fade-section">
+      <div class="section-header">
+        <h3>Our Collection</h3>
+        <div class="muted">Add unlimited items via the admin (images, names, descriptions, prices).</div>
+      </div>
+      <div id="productGrid" class="product-grid">
+      </div>
+    </section>
+
+    <section id="stories" class="stories fade-section">
+      <h3>Shop Stories</h3>
+      <div id="storiesGrid" class="stories-grid"></div>
+    </section>
+
+    <section class="payment-delivery fade-section">
+      <h3>Delivery & Payments</h3>
+      <ul>
+        <li>Cash</li>
+        <li>Debit</li>
+        <li>Payment on Delivery</li>
+        <li>Till: <strong>4145654</strong></li>
+      </ul>
+    </section>
+
+    <section id="contact" class="contact fade-section">
+      <h3>Contact Us</h3>
+      <div class="contact-grid">
+        <form action="https://formsubmit.co/milliecanaiza@gmail.com" method="POST" class="contact-form">
+          <input type="hidden" name="_subject" value="New message from Canaizar Store website">
+          <input type="text" name="name" placeholder="Your name" required>
+          <input type="email" name="email" placeholder="Your email" required>
+          <textarea name="message" rows="4" placeholder="Message" required></textarea>
+          <button class="btn-primary" type="submit">Send Message</button>
+        </form>
+        <div class="contact-info muted">
+          <p><strong>Phone:</strong> 0705526360</p>
+          <p><strong>Address:</strong> Imenti House, Zodiac Stalls Z14</p>
+          <p><strong>Email:</strong> milliecanaiza@gmail.com</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer container">
+    <div class="footer-left">© <span id="year"></span> Canaizar Store — Created and managed by Miguel</div>
+    <div class="footer-right">
+      <a href="#" class="social" aria-label="Instagram">IG</a>
+      <a href="#" class="social" aria-label="Facebook">FB</a>
+      <a href="#" class="social" aria-label="TikTok">TT</a>
+      <a href="#" class="social" aria-label="Pinterest">PT</a>
     </div>
-  </section>
-
-  <section id="stories" class="section">
-    <h2>Shop Stories</h2>
-    <!-- Add your stories here -->
-  </section>
-
-  <section id="contact" class="section">
-    <h2>Contact Us</h2>
-    <p><strong>Location:</strong> Imenti House, Zodiac Stalls Z14</p>
-    <p><strong>Phone:</strong> 0705526360</p>
-    <p><strong>Email:</strong> milliecanaiza@gmail.com</p>
-  </section>
-
-  <section id="admin" class="section">
-    <h2>Admin Panel</h2>
-    <p>Site created and managed by <strong>Miguel</strong>.</p>
-  </section>
-
-  <section id="delivery" class="section">
-    <h2>Delivery & Payments</h2>
-    <p>We offer Cash, Debit, Payment on Delivery, and Till 4145654 payment methods.</p>
-  </section>
-
-  <footer>
-    <p>&copy; 2025 Canaizar Store | All Rights Reserved</p>
   </footer>
+
+  <div id="adminModal" class="modal hidden">
+    <div class="modal-inner">
+      <button id="closeAdmin" class="modal-close">✕</button>
+      <div id="adminArea" class="admin-area">
+        <h3>Admin Dashboard</h3>
+        <div id="welcomeMsg" class="welcome-msg">Welcome, Millicent</div>
+
+        <div class="admin-section">
+          <h4>Add New Product</h4>
+          <input id="prodImage" type="file" accept="image/*">
+          <input id="prodName" type="text" placeholder="Product name">
+          <input id="prodPrice" type="text" placeholder="Price (e.g. KSh 10,500)">
+          <textarea id="prodDesc" placeholder="Short description"></textarea>
+          <button id="addProductBtn" class="btn-primary">Add Product</button>
+        </div>
+
+        <div class="admin-section">
+          <h4>Add Story</h4>
+          <input id="storyImage" type="file" accept="image/*">
+          <input id="storyTitle" type="text" placeholder="Story title">
+          <textarea id="storyText" placeholder="Short story text"></textarea>
+          <button id="addStoryBtn" class="btn-primary">Add Story</button>
+        </div>
+
+        <div class="admin-section">
+          <h4>Manage Content</h4>
+          <button id="exportData" class="btn-outline">Export Data (JSON)</button>
+          <input id="importFile" type="file" accept=".json">
+          <label for="importFile" class="btn-outline">Import Data (JSON)</label>
+        </div>
+        <div style="margin-top:10px"><button id="logoutBtn" class="btn-outline">Logout</button></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="loginOverlay" class="modal login-modal hidden">
+    <div class="modal-inner small">
+      <button id="closeLogin" class="modal-close">✕</button>
+      <h3>Admin login</h3>
+      <input id="adminUser" type="text" placeholder="Username">
+      <input id="adminPassword" type="password" placeholder="Password">
+      <button id="loginBtn" class="btn-primary">Login</button>
+      <div class="muted" style="margin-top:8px;font-size:13px">After login you'll see the upload tools (admin only).</div>
+    </div>
+  </div>
+
+<script>
+const ADMIN_USER = "miggy636";
+const ADMIN_PASSWORD = "canaiza2025";
+const LS_PRODUCTS_KEY = "canaizar_products_v2";
+const LS_STORIES_KEY = "canaizar_stories_v2";
+
+document.addEventListener('DOMContentLoaded', () => {
+  const loader = document.getElementById('loader');
+  setTimeout(() => {
+    loader.classList.add('hidden');
+    document.body.classList.add('loaded');
+  }, 3000);
+});
+
+const faders = () => {
+  document.querySelectorAll('.fade-section').forEach(el => {
+    const rect = el.getBoundingClientRect();
+    if(rect.top < window.innerHeight - 80) el.classList.add('visible');
+  });
+};
+window.addEventListener('scroll', faders);
+window.addEventListener('resize', faders);
+faders();
+
+const el = (s) => document.querySelector(s);
+
+function loadProducts(){ try { return JSON.parse(localStorage.getItem(LS_PRODUCTS_KEY)) || []; } catch(e){ return []; } }
+function saveProducts(arr){ localStorage.setItem(LS_PRODUCTS_KEY, JSON.stringify(arr)); }
+function loadStories(){ try { return JSON.parse(localStorage.getItem(LS_STORIES_KEY)) || []; } catch(e){ return []; } }
+function saveStories(arr){ localStorage.setItem(LS_STORIES_KEY, JSON.stringify(arr)); }
+
+function renderProducts(){
+  const grid = el('#productGrid');
+  grid.innerHTML = '';
+  const products = loadProducts();
+  products.forEach((p, idx) => {
+    const card = document.createElement('article');
+    card.className = 'product-card';
+    card.innerHTML = `
+      <div class="product-media"><img src="${p.image}" alt="${p.name}"></div>
+      <div class="product-body">
+        <h4 class="product-name">${p.name}</h4>
+        <div class="product-price">${p.price}</div>
+        <p class="muted">${p.desc || ''}</p>
+        <div class="product-actions">
+          <button class="btn-outline" onclick="quickView(${idx})">Quick View</button>
+          <button class="btn-primary" onclick="addToCart(${idx})">Add</button>
+          ${isAdmin() ? `<button class="btn-outline" onclick="deleteProduct(${idx})">Delete</button>` : ''}
+        </div>
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+}
+
+function renderStories(){
+  const grid = el('#storiesGrid');
+  grid.innerHTML = '';
+  const stories = loadStories();
+  stories.forEach((s, idx) => {
+    const card = document.createElement('article');
+    card.className = 'story-card';
+    card.innerHTML = `
+      <div class="story-media">${s.image ? `<img src="${s.image}" alt="${s.title}">` : ''}</div>
+      <div class="story-body">
+        <h4>${s.title}</h4>
+        <p class="muted">${s.text}</p>
+        ${isAdmin() ? `<button class="btn-outline" onclick="deleteStory(${idx})">Delete</button>` : ''}
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+}
+
+renderProducts();
+renderStories();
+el('#year').textContent = new Date().getFullYear();
+
+function quickView(idx){
+  const products = loadProducts();
+  const p = products[idx];
+  alert(`${p.name}\n${p.price}\n\n${p.desc}`);
+}
+function addToCart(idx){ alert('Added to cart (mock)'); }
+
+el('#adminBtn').addEventListener('click', ()=>{
+  el('#loginOverlay').classList.remove('hidden');
+});
+el('#closeLogin').addEventListener('click', ()=> el('#loginOverlay').classList.add('hidden'));
+
+el('#loginBtn').addEventListener('click', ()=>{
+  const user = el('#adminUser').value.trim();
+  const pw = el('#adminPassword').value;
+  if(user === ADMIN_USER && pw === ADMIN_PASSWORD){
+    el('#loginOverlay').classList.add('hidden');
+    openAdmin(user);
+  } else {
+    alert('Incorrect username or password');
+  }
+});
+
+function isAdmin(){ return sessionStorage.getItem('canaizar_admin') === 'true'; }
+
+function openAdmin(user){
+  sessionStorage.setItem('canaizar_admin','true');
+  el('#adminModal').classList.remove('hidden');
+  el('#welcomeMsg').textContent = 'Welcome, Millicent';
+  renderProducts();
+  renderStories();
+}
+
+el('#closeAdmin').addEventListener('click', ()=> el('#adminModal').classList.add('hidden'));
+el('#logoutBtn').addEventListener('click', ()=>{ sessionStorage.removeItem('canaizar_admin'); el('#adminModal').classList.add('hidden'); alert('Logged out'); });
+
+el('#addProductBtn').addEventListener('click', ()=>{
+  const file = el('#prodImage').files[0];
+  const name = el('#prodName').value.trim() || 'Product name';
+  const price = el('#prodPrice').value.trim() || 'KSh 0';
+  const desc = el('#prodDesc').value.trim();
+  if(!file){ alert('Please choose an image file.'); return; }
+  const reader = new FileReader();
+  reader.onload = function(e){
+    const imgData = e.target.result;
+    const products = loadProducts();
+    products.unshift({ image: imgData, name, price, desc });
+    saveProducts(products);
+    renderProducts();
+    el('#prodImage').value = ''; el('#prodName').value=''; el('#prodPrice').value=''; el('#prodDesc').value='';
+  };
+  reader.readAsDataURL(file);
+});
+
+function deleteProduct(idx){
+  if(!confirm('Delete this product?')) return;
+  const products = loadProducts();
+  products.splice(idx,1);
+  saveProducts(products);
+  renderProducts();
+}
+
+el('#addStoryBtn').addEventListener('click', ()=>{
+  const file = el('#storyImage').files[0];
+  const title = el('#storyTitle').value.trim() || 'Story';
+  const text = el('#storyText').value.trim();
+  if(!file && !text){ alert('Add text or image for the story'); return; }
+  if(file){
+    const reader = new FileReader();
+    reader.onload = function(e){
+      const imgData = e.target.result;
+      const stories = loadStories();
+      stories.unshift({ image: imgData, title, text });
+      saveStories(stories);
+      renderStories();
+      el('#storyImage').value=''; el('#storyTitle').value=''; el('#storyText').value='';
+    };
+    reader.readAsDataURL(file);
+  } else {
+    const stories = loadStories();
+    stories.unshift({ image: '', title, text });
+    saveStories(stories);
+    renderStories();
+    el('#storyTitle').value=''; el('#storyText').value='';
+  }
+});
+
+function deleteStory(idx){
+  if(!confirm('Delete this story?')) return;
+  const stories = loadStories();
+  stories.splice(idx,1);
+  saveStories(stories);
+  renderStories();
+}
+
+el('#exportData').addEventListener('click', ()=>{
+  const data = { products: loadProducts(), stories: loadStories() };
+  const blob = new Blob([JSON.stringify(data, null, 2)], {type:'application/json'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a'); a.href=url; a.download='canaizar_data.json'; document.body.appendChild(a); a.click(); a.remove();
+});
+el('#importFile').addEventListener('change', (ev)=>{
+  const f = ev.target.files[0]; if(!f) return;
+  const reader = new FileReader();
+  reader.onload = function(e){ try{
+    const data = JSON.parse(e.target.result);
+    if(data.products) saveProducts(data.products);
+    if(data.stories) saveStories(data.stories);
+    renderProducts(); renderStories();
+    alert('Import successful');
+  } catch(err){ alert('Invalid JSON file'); } };
+  reader.readAsText(f);
+});
+
+if(isAdmin()) openAdmin();
+</script>
 </body>
 </html>
